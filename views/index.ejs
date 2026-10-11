@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DevResearch — AI Research Workspace</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "DM Sans", sans-serif;
+      }
+      h1,
+      h2,
+      h3,
+      .brand {
+        font-family: "Manrope", sans-serif;
+      }
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
+      .markdown-content h1,
+      .markdown-content h2,
+      .markdown-content h3 {
+        margin: 1rem 0 0.5rem;
+        font-weight: 700;
+        color: #0f172a;
+      }
+      .markdown-content p,
+      .markdown-content ul,
+      .markdown-content ol {
+        margin: 0.5rem 0;
+      }
+      .markdown-content ul {
+        list-style: disc;
+        padding-left: 1.5rem;
+      }
+      .markdown-content ol {
+        list-style: decimal;
+        padding-left: 1.5rem;
+      }
+      .markdown-content pre {
+        overflow-x: auto;
+        margin: 0.75rem 0;
+        border-radius: 0.75rem;
+        background: #0f172a;
+        padding: 1rem;
+        color: #e2e8f0;
+      }
+      .markdown-content :not(pre) > code {
+        border-radius: 0.25rem;
+        background: #eef2ff;
+        padding: 0.125rem 0.3rem;
+        color: #4338ca;
+      }
+      .markdown-content a {
+        color: #4f46e5;
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body class="h-screen overflow-hidden bg-[#f8f9fc] text-slate-800">
+    <div class="flex h-full">
+      <aside
+        class="hidden w-64 shrink-0 flex-col border-r border-slate-200 bg-white p-5 md:flex"
+      >
+        <a
+          href="/"
+          class="brand mb-9 flex items-center gap-3 text-lg font-extrabold tracking-tight"
+        >
+          <span
+            class="flex h-9 w-9 items-center justify-center rounded-xl bg-indigo-600 text-white"
+            >D</span
+          >
+          DevResearch
+        </a>
+
+        <button
+          id="new-chat"
+          class="flex items-center justify-center gap-2 rounded-xl bg-indigo-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-indigo-700"
+        >
+          <span class="text-lg">＋</span> Riset baru
+        </button>
+
+        <p
+          class="mb-3 mt-8 text-xs font-bold uppercase tracking-wider text-slate-400"
+        >
+          Workspace
+        </p>
+        <a
+          href="#"
+          class="rounded-lg bg-indigo-50 px-3 py-2.5 text-sm font-semibold text-indigo-700"
+          >⌕ &nbsp; AI Research Assistant</a
+        >
+
+        <div class="mt-8">
+          <p
+            class="mb-3 text-xs font-bold uppercase tracking-wider text-slate-400"
+          >
+            Terbaru
+          </p>
+          <div class="space-y-1 text-sm text-slate-500">
+            <p class="truncate rounded-lg px-3 py-2">
+              Perbandingan React dan Vue
+            </p>
+            <p class="truncate rounded-lg px-3 py-2">
+              Memahami vector database
+            </p>
+            <p class="truncate rounded-lg px-3 py-2">
+              Arsitektur aplikasi Express
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="mt-auto rounded-2xl border border-indigo-100 bg-indigo-50 p-4"
+        >
+          <p class="text-sm font-bold text-slate-800">Riset lebih cepat</p>
+          <p class="mt-1 text-xs leading-5 text-slate-500">
+            Jelajahi ide dan topik teknis bersama AI.
+          </p>
+        </div>
+      </aside>
+
+      <main class="flex min-w-0 flex-1 flex-col">
+        <header
+          class="flex h-16 shrink-0 items-center justify-between border-b border-slate-200 bg-white px-5 md:px-8"
+        >
+          <div class="flex items-center gap-3">
+            <span class="brand text-base font-extrabold md:hidden"
+              >DevResearch</span
+            >
+            <span class="hidden text-sm text-slate-400 md:inline"
+              >Workspace</span
+            >
+            <span class="hidden text-slate-300 md:inline">/</span>
+            <span class="hidden text-sm font-semibold text-slate-700 md:inline"
+              >AI Research Assistant</span
+            >
+          </div>
+          <div class="flex items-center gap-3">
+            <span
+              class="hidden rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700 sm:inline-flex"
+              >● Gemini aktif</span
+            >
+            <div
+              class="flex h-9 w-9 items-center justify-center rounded-full bg-slate-200 text-sm font-bold text-slate-600"
+            >
+              D
+            </div>
+          </div>
+        </header>
+
+        <section
+          id="conversation"
+          class="scrollbar-hide flex-1 overflow-y-auto px-4 py-8 md:px-8"
+        >
+          <div
+            id="welcome"
+            class="mx-auto flex min-h-full max-w-3xl flex-col items-center justify-center text-center"
+          >
+            <div
+              class="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-indigo-600 text-2xl text-white shadow-lg shadow-indigo-200"
+            >
+              ✳
+            </div>
+            <p class="mb-2 text-sm font-semibold text-indigo-600">
+              AI RESEARCH WORKSPACE
+            </p>
+            <h1
+              class="text-3xl font-extrabold tracking-tight text-slate-900 md:text-4xl"
+            >
+              Apa yang ingin kamu riset?
+            </h1>
+            <p
+              class="mt-3 max-w-lg text-sm leading-6 text-slate-500 md:text-base"
+            >
+              Tanyakan konsep, bandingkan teknologi, atau minta bantuan memahami
+              kode.
+            </p>
+
+            <div
+              class="mt-8 grid w-full max-w-2xl gap-3 text-left sm:grid-cols-2"
+            >
+              <button
+                class="suggestion rounded-2xl border border-slate-200 bg-white p-4 text-sm transition hover:border-indigo-300 hover:shadow-sm"
+              >
+                Bandingkan Next.js dan Express untuk aplikasi web
+              </button>
+              <button
+                class="suggestion rounded-2xl border border-slate-200 bg-white p-4 text-sm transition hover:border-indigo-300 hover:shadow-sm"
+              >
+                  Jelaskan cara kerja RAG dengan contoh sederhana
+              </button>
+              <button
+                class="suggestion rounded-2xl border border-slate-200 bg-white p-4 text-sm transition hover:border-indigo-300 hover:shadow-sm"
+              >
+                Apa praktik terbaik mengamankan REST API?
+              </button>
+              <button
+                class="suggestion rounded-2xl border border-slate-200 bg-white p-4 text-sm transition hover:border-indigo-300 hover:shadow-sm"
+              >
+                Bantu saya memahami dependency injection
+              </button>
+            </div>
+          </div>
+
+          <!-- Chat Response -->
+          <div id="messages" class="mx-auto hidden max-w-3xl space-y-6"></div>
+        </section>
+
+        <footer class="shrink-0 px-4 pb-5 md:px-8">
+          <form id="chat-form" class="mx-auto max-w-3xl">
+            <div
+              class="rounded-2xl border border-slate-200 bg-white p-3 shadow-sm transition focus-within:border-indigo-300 focus-within:ring-4 focus-within:ring-indigo-50"
+            >
+              <textarea
+                id="prompt"
+                rows="2"
+                placeholder="Tanyakan sesuatu tentang teknologi..."
+                class="w-full resize-none border-0 bg-transparent px-2 py-1 text-sm outline-none placeholder:text-slate-400"
+                required
+              ></textarea>
+              <div
+                class="flex items-center justify-between border-t border-slate-100 pt-3"
+              >
+                <span class="pl-2 text-xs text-slate-400"
+                  >Gemini · Periksa kembali informasi penting</span
+                >
+                <button
+                  id="send-button"
+                  type="submit"
+                  class="rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  Kirim <span aria-hidden="true">↑</span>
+                </button>
+              </div>
+            </div>
+            <p
+              id="error-message"
+              class="mt-2 hidden text-center text-sm text-red-600"
+            ></p>
+          </form>
+        </footer>
+      </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/marked@15.0.12/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js"></script>
+
+    <script>
+      const form = document.querySelector("#chat-form");
+      const promptInput = document.querySelector("#prompt");
+      const messages = document.querySelector("#messages");
+      const welcome = document.querySelector("#welcome");
+      const sendButton = document.querySelector("#send-button");
+      const errorMessage = document.querySelector("#error-message");
+      const historyContainer = document.querySelector(".space-y-1.text-sm.text-slate-500"); 
+
+      let chatHistory = JSON.parse(localStorage.getItem("dev_research_history")) || [];
+
+      function renderHistoryList() {
+        if (!historyContainer) return;
+        historyContainer.innerHTML = "";
+
+        if (chatHistory.length === 0) {
+          historyContainer.innerHTML = `<p class="px-3 py-2 text-xs text-slate-400">Belum ada riset</p>`;
+          return;
+        }
+
+        chatHistory.forEach((chat, index) => {
+          const item = document.createElement("p");
+          item.className = "truncate rounded-lg px-3 py-2 cursor-pointer hover:bg-slate-50 transition text-slate-600 font-medium";
+          item.textContent = chat.title;
+          item.addEventListener("click", () => loadChatSession(index));
+          historyContainer.appendChild(item);
+        });
+      }
+
+      function renderMarkdown(text) {
+        const html = marked.parse(text || "");
+        return DOMPurify.sanitize(html);
+      }
+
+      function addMessage(role, text, isHtml = false) {
+        const row = document.createElement("div");
+        row.className = role === "user" ? "flex justify-end" : "flex justify-start";
+
+        const bubble = document.createElement("div");
+        bubble.className =
+          role === "user"
+            ? "max-w-[85%] whitespace-pre-wrap rounded-2xl rounded-br-md bg-indigo-600 px-4 py-3 text-sm leading-6 text-white"
+            : "max-w-[90%] markdown-content rounded-2xl rounded-bl-md border border-slate-200 bg-white px-5 py-4 text-sm leading-7 text-slate-700";
+
+        if (isHtml) {
+          bubble.innerHTML = text;
+        } else {
+          bubble.textContent = text;
+        }
+
+        row.appendChild(bubble);
+        messages.appendChild(row);
+        messages.scrollTop = messages.scrollHeight;
+        return bubble;
+      }
+
+      let currentSessionMessages = [];
+
+      function saveCurrentSession(title) {
+        if (currentSessionMessages.length === 0) return;
+        
+        chatHistory.unshift({
+          title: title.length > 30 ? title.substring(0, 30) + "..." : title,
+          messages: currentSessionMessages
+        });
+
+        // Batasi maksimal 10 riwayat terakhir agar tidak penuh
+        if (chatHistory.length > 10) {
+          chatHistory.pop();
+        }
+
+        localStorage.setItem("dev_research_history", JSON.stringify(chatHistory));
+        renderHistoryList();
+      }
+
+      function loadChatSession(index) {
+        const session = chatHistory[index];
+        if (!session) return;
+
+        messages.replaceChildren();
+        welcome.classList.add("hidden");
+        messages.classList.remove("hidden");
+        errorMessage.classList.add("hidden");
+
+        currentSessionMessages = session.messages;
+
+        session.messages.forEach(msg => {
+          addMessage(msg.role, msg.content, msg.role === "assistant");
+        });
+      }
+
+      // Tombol Saran
+      document.querySelectorAll(".suggestion").forEach((button) => {
+        button.addEventListener("click", () => {
+          promptInput.value = button.textContent.trim();
+          promptInput.focus();
+        });
+      });
+
+      document.querySelector("#new-chat").addEventListener("click", () => {
+        messages.replaceChildren();
+        messages.classList.add("hidden");
+        welcome.classList.remove("hidden");
+        errorMessage.classList.add("hidden");
+        promptInput.value = "";
+        currentSessionMessages = [];
+      });
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const prompt = promptInput.value.trim();
+        if (!prompt) return;
+
+        const isFirstMessage = currentSessionMessages.length === 0;
+
+        welcome.classList.add("hidden");
+        messages.classList.remove("hidden");
+        errorMessage.classList.add("hidden");
+        
+        addMessage("user", prompt);
+        currentSessionMessages.push({ role: "user", content: prompt });
+
+        promptInput.value = "";
+        sendButton.disabled = true;
+
+        const loading = addMessage("assistant", "Sedang menyiapkan jawaban...");
+
+        try {
+          const response = await fetch("/api/generate-text", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ prompt }),
+          });
+
+          const data = await response.json();
+          if (!response.ok)
+            throw new Error(data.message || "Terjadi kesalahan.");
+
+          const rawAnswer = data.answer || "Tidak ada jawaban yang diterima.";
+          const htmlAnswer = renderMarkdown(rawAnswer);
+
+          loading.innerHTML = htmlAnswer;
+          currentSessionMessages.push({ role: "assistant", content: htmlAnswer });
+
+          if (isFirstMessage) {
+            saveCurrentSession(prompt);
+          }
+        } catch (error) {
+          loading.textContent = "Jawaban tidak dapat dimuat.";
+          errorMessage.textContent = error.message;
+          errorMessage.classList.remove("hidden");
+        } finally {
+          sendButton.disabled = false;
+          promptInput.focus();
+          messages.scrollTop = messages.scrollHeight;
+        }
+      });
+
+      promptInput.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" && !event.shiftKey) {
+          event.preventDefault();
+          form.requestSubmit();
+        }
+      });
+
+      renderHistoryList();
+    </script>
+    </script>
+  </body>
+</html>
